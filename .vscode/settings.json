@@ -1,0 +1,8 @@
+{
+    "cSpell.words": [
+        "firestore"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
+}
