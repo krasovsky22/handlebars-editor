@@ -1,17 +1,17 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Header, SidebarArea } from "@/containers";
+import { Header, SidebarArea, Editor } from "@/containers";
 
-const MainContainer = styled.div``;
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
 
 const Content = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-const EditorArea = styled.div`
   flex-grow: 1;
-  background-color: orange;
 `;
 
 const App: React.FC = () => {
@@ -19,8 +19,7 @@ const App: React.FC = () => {
     <MainContainer>
       <Header>Header</Header>
       <Content>
-        <SidebarArea>Sidebar</SidebarArea>
-        <EditorArea>Editor</EditorArea>
+        <Editor />
       </Content>
     </MainContainer>
   );

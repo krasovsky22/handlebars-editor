@@ -1,7 +1,6 @@
 import styled from "styled-components/macro";
 
 export const Container = styled.div`
-  height: 100%;
   box-shadow: none;
   background-color: white;
   z-index: 4;

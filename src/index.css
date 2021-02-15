@@ -11,3 +11,19 @@ body {
   color: #4b4b4b;
   background: #e0e0e0;
 }
+
+.component-selected {
+  position: relative;
+}
+
+.component-selected:after {
+  content: " ";
+  border: 1px dashed #2680eb;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  display: block;
+}

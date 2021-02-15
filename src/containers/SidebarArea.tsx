@@ -1,7 +1,9 @@
 import { SidebarArea } from "@/components";
+import { Text } from "@components/editor-elements";
 import { WithChildrenType } from "@/components/common-types";
 import { BrushIcon } from "@assets/icons";
 import React, { useState, useContext, createContext, useCallback } from "react";
+import { useEditor, Element } from "@craftjs/core";
 
 type SidebarButtonContainerProps = {
   index: number;
@@ -60,7 +62,12 @@ const SidebarOpenedAreaContainer: React.FC<WithChildrenType & SidebarOpenedAreaC
 };
 
 const SidebarAreaContainer: React.FC = () => {
-  const [buttonIndexActive, setButtonIndexActive] = useState<number>(0);
+  const [buttonIndexActive, setButtonIndexActive] = useState<number>(-1);
+  const { enabled, connectors, actions, canUndo, canRedo } = useEditor((state, query) => ({
+    enabled: state.options.enabled,
+    canUndo: query.history.canUndo(),
+    canRedo: query.history.canRedo(),
+  }));
 
   return (
     <SidebarAreaContext.Provider value={{ buttonIndexActive, setButtonIndexActive }}>
@@ -70,11 +77,20 @@ const SidebarAreaContainer: React.FC = () => {
           <SidebarButtonContainer icon={<BrushIcon />} title="Design" index={1} />
           <SidebarButtonContainer icon={<BrushIcon />} title="Design" index={2} />
           <SidebarButtonContainer icon={<BrushIcon />} title="Design" index={3} />
+          <button disabled={!canUndo} onClick={() => actions.history.undo()}>
+            Undo
+          </button>
+
+          <button disabled={!canRedo} onClick={() => actions.history.redo()}>
+            Redo
+          </button>
         </SidebarArea.Inner>
         <SidebarArea.OpenedArea>
           {buttonIndexActive === 0 && (
             <SidebarOpenedAreaContainer title="Global Design">
-              Some content 0
+              <button
+                ref={(ref) => connectors.create(ref, <Text text="Hello new world" />)}
+              ></button>
             </SidebarOpenedAreaContainer>
           )}
           {buttonIndexActive === 1 && (
