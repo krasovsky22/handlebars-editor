@@ -74,7 +74,7 @@ const RenderNode: React.FC<RenderNodeProps> = ({ render }) => {
               style={{
                 left: getPos(dom).left,
                 top: getPos(dom).top,
-                zIndex: 9999,
+                zIndex: 2,
               }}
             >
               <h2 className="flex-1 mr-4">{name}</h2>

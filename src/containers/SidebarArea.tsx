@@ -88,9 +88,9 @@ const SidebarAreaContainer: React.FC = () => {
         <SidebarArea.OpenedArea>
           {buttonIndexActive === 0 && (
             <SidebarOpenedAreaContainer title="Global Design">
-              <button
-                ref={(ref) => connectors.create(ref, <Text text="Hello new world" />)}
-              ></button>
+              <button ref={(ref) => connectors.create(ref, <Text text="Hello new world" />)}>
+                Test Button
+              </button>
             </SidebarOpenedAreaContainer>
           )}
           {buttonIndexActive === 1 && (
