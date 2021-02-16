@@ -109,6 +109,10 @@ SidebarArea.HistoryButtonsGroup = ({ children, ...rest }: WithChildrenType) => {
   return <HistoryButtonsInner {...rest}>{children}</HistoryButtonsInner>;
 };
 
+SidebarArea.HistoryButtonsInner = ({ children, ...rest }: WithChildrenType) => {
+  return <HistoryButtonsInner {...rest}>{children}</HistoryButtonsInner>;
+};
+
 type HistoryButtonType = {
   disabled?: boolean;
 };

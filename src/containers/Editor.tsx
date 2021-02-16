@@ -20,10 +20,7 @@ const EditorContainer: React.FC = () => {
           <Frame>
             <Element is={Container} canvas custom={{ displayName: "App" }}>
               <Element is={Container} background="#FFFFFF" padding={"40px 40px"} canvas>
-                <Text
-                  fontSize={23}
-                  text="Craft.js is a React framework for building powerful &amp; feature-rich drag-n-drop page editors."
-                />
+                <Text fontSize={23} text="My test Text" />
               </Element>
               <Element is={Container} background="#a04c4c" padding={"40px 40px"} canvas>
                 <Text fontSize={23} text="Another Text" />

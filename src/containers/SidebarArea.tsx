@@ -83,13 +83,13 @@ const SidebarAreaContainer: React.FC = () => {
             />
           ))}
         </SidebarArea.Inner>
-        <SidebarArea.OpenedArea>
-          {OpenedAreaData && (
+        {OpenedAreaData && (
+          <SidebarArea.OpenedArea>
             <SidebarOpenedAreaContainer title={OpenedAreaData.openedAreaTitle}>
               {OpenedAreaData.openedAreaContent}
             </SidebarOpenedAreaContainer>
-          )}
-        </SidebarArea.OpenedArea>
+          </SidebarArea.OpenedArea>
+        )}
 
         <SidebarArea.HistoryButtonsGroup>
           <SidebarArea.HistoryButton

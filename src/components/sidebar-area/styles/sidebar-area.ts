@@ -181,10 +181,10 @@ export const HistoryButtonsGroup = styled.div`
 `;
 
 export const HistoryButtonsInner = styled.div`
-  width: 100%;
+  flex-flow: row wrap;
   display: flex;
-  flex-direction: row;
-  align-content: space-around;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
 `;
 
 type HistoryButtonType = {
