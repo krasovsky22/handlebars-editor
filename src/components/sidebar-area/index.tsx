@@ -118,7 +118,6 @@ type HistoryButtonType = {
 };
 SidebarArea.HistoryButton = ({
   disabled = false,
-  onClick,
   children,
   ...rest
 }: HistoryButtonType & WithChildrenType & ClickableType) => {
