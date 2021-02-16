@@ -6,10 +6,13 @@ export const Container = styled.div`
   z-index: 4;
   position: relative;
   width: 6rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Inner = styled.div`
   width: 6rem;
+  flex-grow: 1;
 `;
 
 export const ButtonContainer = styled.div`
@@ -171,4 +174,25 @@ export const OpenedAreaButtonIcon = styled.div`
 export const OpenedAreaButtonTitle = styled.div`
   text-align: center;
   font-size: 15px;
+`;
+
+export const HistoryButtonsGroup = styled.div`
+  display: flex;
+`;
+
+export const HistoryButtonsInner = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+`;
+
+type HistoryButtonType = {
+  disabled: boolean;
+};
+export const HistoryButton = styled.div<HistoryButtonType>`
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  ${({ disabled }) => disabled && `opacity: 0.5; cursor: not-allowed`}
 `;

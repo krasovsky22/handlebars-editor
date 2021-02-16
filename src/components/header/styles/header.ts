@@ -12,7 +12,7 @@ export const Container = styled.div`
   font-size: 14px;
   box-shadow: 0 2px 4px rgb(64 65 71 / 30%);
   color: white;
-  padding-left: 20px;
+  padding: 5px 0 5px 20px;
 `;
 
 export const Logo = styled.img<ImageType>`

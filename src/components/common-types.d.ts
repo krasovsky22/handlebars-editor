@@ -11,6 +11,7 @@ export type ImageType = {
 
 export type ClickableType = {
   onClick: any;
+  title?: string;
 };
 
 export type VisibleType = {

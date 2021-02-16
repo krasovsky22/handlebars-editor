@@ -18,6 +18,9 @@ import {
   OpenedAreaButtonInner,
   OpenedAreaButtonIcon,
   OpenedAreaButtonTitle,
+  HistoryButtonsGroup,
+  HistoryButtonsInner,
+  HistoryButton,
 } from "./styles/sidebar-area";
 import { useDidMount } from "beautiful-react-hooks";
 import { CloseIcon } from "@assets/icons";
@@ -102,14 +105,34 @@ SidebarArea.OpenedAreaButtonGroup = ({ children, ...rest }: WithChildrenType) =>
   return <OpenedAreaButtonGroup {...rest}>{children}</OpenedAreaButtonGroup>;
 };
 
+SidebarArea.HistoryButtonsGroup = ({ children, ...rest }: WithChildrenType) => {
+  return <HistoryButtonsInner {...rest}>{children}</HistoryButtonsInner>;
+};
+
+type HistoryButtonType = {
+  disabled?: boolean;
+};
+SidebarArea.HistoryButton = ({
+  disabled = false,
+  onClick,
+  children,
+  ...rest
+}: HistoryButtonType & WithChildrenType & ClickableType) => {
+  return (
+    <HistoryButton disabled={disabled} {...rest}>
+      {children}
+    </HistoryButton>
+  );
+};
+
 type OpenedAreaButtonType = {
   title: string;
   icon: React.ReactNode;
 };
 SidebarArea.OpenedAreaButton = ({ title, icon, ...rest }: OpenedAreaButtonType) => {
   return (
-    <OpenedAreaButton {...rest}>
-      <OpenedAreaButtonInner>
+    <OpenedAreaButton>
+      <OpenedAreaButtonInner {...rest}>
         <OpenedAreaButtonIcon>{icon}</OpenedAreaButtonIcon>
         <OpenedAreaButtonTitle>{title}</OpenedAreaButtonTitle>
       </OpenedAreaButtonInner>

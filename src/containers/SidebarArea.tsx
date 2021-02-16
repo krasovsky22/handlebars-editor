@@ -3,6 +3,7 @@ import { WithChildrenType } from "@/components/common-types";
 import React, { useState, useContext, createContext, useCallback } from "react";
 import { useEditor } from "@craftjs/core";
 import { SidebarMenuButtonsFixture } from "@fixtures/sidebar";
+import { UndoIcon, RedoIcon } from "@/assets/icons";
 
 type SidebarButtonContainerProps = {
   index: number;
@@ -61,7 +62,7 @@ const SidebarOpenedAreaContainer: React.FC<WithChildrenType & SidebarOpenedAreaC
 };
 
 const SidebarAreaContainer: React.FC = () => {
-  const [buttonIndexActive, setButtonIndexActive] = useState<number>(0);
+  const [buttonIndexActive, setButtonIndexActive] = useState<number>(-1);
   const { enabled, actions, canUndo, canRedo } = useEditor((state, query) => ({
     enabled: state.options.enabled,
     canUndo: query.history.canUndo(),
@@ -90,13 +91,22 @@ const SidebarAreaContainer: React.FC = () => {
           )}
         </SidebarArea.OpenedArea>
 
-        <button disabled={!canUndo} onClick={() => actions.history.undo()}>
-          Undo
-        </button>
-
-        <button disabled={!canRedo} onClick={() => actions.history.redo()}>
-          Redo
-        </button>
+        <SidebarArea.HistoryButtonsGroup>
+          <SidebarArea.HistoryButton
+            disabled={!canUndo}
+            onClick={() => (canUndo ? actions.history.undo() : null)}
+            title="Undo"
+          >
+            <UndoIcon />
+          </SidebarArea.HistoryButton>
+          <SidebarArea.HistoryButton
+            disabled={!canRedo}
+            onClick={() => (canRedo ? actions.history.redo() : null)}
+            title="Redo"
+          >
+            <RedoIcon />
+          </SidebarArea.HistoryButton>
+        </SidebarArea.HistoryButtonsGroup>
       </SidebarArea>
     </SidebarAreaContext.Provider>
   );
