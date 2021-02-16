@@ -1,9 +1,8 @@
 import { SidebarArea } from "@/components";
-import { Text } from "@components/editor-elements";
 import { WithChildrenType } from "@/components/common-types";
-import { BrushIcon } from "@assets/icons";
 import React, { useState, useContext, createContext, useCallback } from "react";
-import { useEditor, Element } from "@craftjs/core";
+import { useEditor } from "@craftjs/core";
+import { SidebarMenuButtonsFixture } from "@fixtures/sidebar";
 
 type SidebarButtonContainerProps = {
   index: number;
@@ -62,53 +61,42 @@ const SidebarOpenedAreaContainer: React.FC<WithChildrenType & SidebarOpenedAreaC
 };
 
 const SidebarAreaContainer: React.FC = () => {
-  const [buttonIndexActive, setButtonIndexActive] = useState<number>(-1);
-  const { enabled, connectors, actions, canUndo, canRedo } = useEditor((state, query) => ({
+  const [buttonIndexActive, setButtonIndexActive] = useState<number>(0);
+  const { enabled, actions, canUndo, canRedo } = useEditor((state, query) => ({
     enabled: state.options.enabled,
     canUndo: query.history.canUndo(),
     canRedo: query.history.canRedo(),
   }));
 
+  const OpenedAreaData = SidebarMenuButtonsFixture[buttonIndexActive]!;
+
   return (
     <SidebarAreaContext.Provider value={{ buttonIndexActive, setButtonIndexActive }}>
       <SidebarArea>
         <SidebarArea.Inner>
-          <SidebarButtonContainer icon={<BrushIcon />} title="Design" index={0} />
-          <SidebarButtonContainer icon={<BrushIcon />} title="Design" index={1} />
-          <SidebarButtonContainer icon={<BrushIcon />} title="Design" index={2} />
-          <SidebarButtonContainer icon={<BrushIcon />} title="Design" index={3} />
-          <button disabled={!canUndo} onClick={() => actions.history.undo()}>
-            Undo
-          </button>
-
-          <button disabled={!canRedo} onClick={() => actions.history.redo()}>
-            Redo
-          </button>
+          {SidebarMenuButtonsFixture.map((element, index) => (
+            <SidebarButtonContainer
+              index={index}
+              {...element}
+              key={`${element.title}_${element.openedAreaTitle}_${index}`}
+            />
+          ))}
         </SidebarArea.Inner>
         <SidebarArea.OpenedArea>
-          {buttonIndexActive === 0 && (
-            <SidebarOpenedAreaContainer title="Global Design">
-              <button ref={(ref) => connectors.create(ref, <Text text="Hello new world" />)}>
-                Test Button
-              </button>
-            </SidebarOpenedAreaContainer>
-          )}
-          {buttonIndexActive === 1 && (
-            <SidebarOpenedAreaContainer title="Global Design 1">
-              Some content 1
-            </SidebarOpenedAreaContainer>
-          )}
-          {buttonIndexActive === 2 && (
-            <SidebarOpenedAreaContainer title="Global Design 2">
-              Some content 2
-            </SidebarOpenedAreaContainer>
-          )}
-          {buttonIndexActive === 3 && (
-            <SidebarOpenedAreaContainer title="Global Design 3">
-              Some content 3
+          {OpenedAreaData && (
+            <SidebarOpenedAreaContainer title={OpenedAreaData.openedAreaTitle}>
+              {OpenedAreaData.openedAreaContent}
             </SidebarOpenedAreaContainer>
           )}
         </SidebarArea.OpenedArea>
+
+        <button disabled={!canUndo} onClick={() => actions.history.undo()}>
+          Undo
+        </button>
+
+        <button disabled={!canRedo} onClick={() => actions.history.redo()}>
+          Redo
+        </button>
       </SidebarArea>
     </SidebarAreaContext.Provider>
   );

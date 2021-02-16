@@ -13,6 +13,11 @@ import {
   ButtonArrow,
   Inner,
   OpenedAreaContent,
+  OpenedAreaButtonGroup,
+  OpenedAreaButton,
+  OpenedAreaButtonInner,
+  OpenedAreaButtonIcon,
+  OpenedAreaButtonTitle,
 } from "./styles/sidebar-area";
 import { useDidMount } from "beautiful-react-hooks";
 import { CloseIcon } from "@assets/icons";
@@ -91,6 +96,25 @@ SidebarArea.OpenedAreaTitle = ({
 
 SidebarArea.OpenedAreaBody = ({ children, ...rest }: WithChildrenType) => {
   return <OpenedAreaBody {...rest}>{children}</OpenedAreaBody>;
+};
+
+SidebarArea.OpenedAreaButtonGroup = ({ children, ...rest }: WithChildrenType) => {
+  return <OpenedAreaButtonGroup {...rest}>{children}</OpenedAreaButtonGroup>;
+};
+
+type OpenedAreaButtonType = {
+  title: string;
+  icon: React.ReactNode;
+};
+SidebarArea.OpenedAreaButton = ({ title, icon, ...rest }: OpenedAreaButtonType) => {
+  return (
+    <OpenedAreaButton {...rest}>
+      <OpenedAreaButtonInner>
+        <OpenedAreaButtonIcon>{icon}</OpenedAreaButtonIcon>
+        <OpenedAreaButtonTitle>{title}</OpenedAreaButtonTitle>
+      </OpenedAreaButtonInner>
+    </OpenedAreaButton>
+  );
 };
 
 export default SidebarArea;

@@ -98,7 +98,6 @@ export const OpenedAreaContent = styled.div<OpenedAreaType>`
 `;
 
 export const OpenedAreaInner = styled.div`
-  padding: 0 20px;
   display: flex;
   flex-direction: column;
 `;
@@ -108,6 +107,7 @@ export const OpenedAreaBody = styled.div`
   flex-direction: column;
   background: white;
   width: 300px;
+  padding: 10px;
 `;
 
 export const OpenedTitle = styled.div`
@@ -127,4 +127,48 @@ export const OpenedTitle = styled.div`
     margin: auto 0;
     cursor: pointer;
   }
+`;
+
+export const OpenedAreaButtonGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  div {
+    flex: 0 0 30%;
+  }
+`;
+export const OpenedAreaButton = styled.div`
+  position: relative;
+`;
+export const OpenedAreaButtonInner = styled.div`
+  width: 86px;
+  height: 85px;
+  box-sizing: border-box;
+  color: #617379;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.1s ease-in-out;
+  box-shadow: 1px 1px 2px 0px rgb(64 65 71 / 18%);
+  align-items: center;
+  flex-wrap: nowrap;
+
+  &:hover {
+    color: #f66035;
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 10px 0 rgb(0 0 0 / 20%);
+  }
+`;
+export const OpenedAreaButtonIcon = styled.div`
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 50px;
+    height: 50px;
+  }
+`;
+export const OpenedAreaButtonTitle = styled.div`
+  text-align: center;
+  font-size: 15px;
 `;
