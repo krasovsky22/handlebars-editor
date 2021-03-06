@@ -1,15 +1,8 @@
 import React from "react";
-import { EditorArea } from "@/components";
+import { EditorArea, ViewPort } from "@/components";
 import { Editor, Frame, Element } from "@craftjs/core";
 import { Container, Text, RenderNode } from "@components/editor-elements";
 import { Configuration, SidebarArea } from "@/containers";
-import styled from "styled-components/macro";
-
-const ViewPort = styled.div`
-  flex-grow: 1;
-  background-color: orange;
-  margin: 20px;
-`;
 
 const EditorContainer: React.FC = () => {
   return (
@@ -18,13 +11,20 @@ const EditorContainer: React.FC = () => {
         <SidebarArea />
         <ViewPort>
           <Frame>
-            <Element is={Container} canvas custom={{ displayName: "App" }}>
-              <Element is={Container} background="#FFFFFF" padding={"40px 40px"} canvas>
+            <Element
+              id="App"
+              is={Container}
+              canvas
+              width="800px"
+              padding={["40px", "40px", "40px", "40px"]}
+              custom={{ displayName: "App", rules: { canDrag: () => false } }}
+            >
+              {/* <Element is={Container} background="#FFFFFF" padding={"40px 40px"} canvas>
                 <Text fontSize={23} text="My test Text" />
               </Element>
               <Element is={Container} background="#a04c4c" padding={"40px 40px"} canvas>
                 <Text fontSize={23} text="Another Text" />
-              </Element>
+              </Element> */}
             </Element>
           </Frame>
         </ViewPort>

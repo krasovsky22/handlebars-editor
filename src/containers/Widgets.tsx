@@ -1,8 +1,7 @@
 import React from "react";
 import { useEditor } from "@craftjs/core";
-import { Text } from "@components/editor-elements";
 import { SidebarArea } from "@/components";
-import { HeadingIcon } from "@assets/icons";
+import { WidgetsFixture } from "@fixtures/widgets";
 
 const WidgetsContainer: React.FC = () => {
   const {
@@ -10,18 +9,11 @@ const WidgetsContainer: React.FC = () => {
   } = useEditor();
   return (
     <SidebarArea.OpenedAreaButtonGroup>
-      <div ref={(ref) => create(ref, <Text text="Hello new world" />)}>
-        <SidebarArea.OpenedAreaButton title="Text" icon={<HeadingIcon size="lg" />} />
-      </div>
-      <div ref={(ref) => create(ref, <Text text="Hello new world" />)}>
-        <SidebarArea.OpenedAreaButton title="Text" icon={<HeadingIcon size="lg" />} />
-      </div>
-      <div ref={(ref) => create(ref, <Text text="Hello new world" />)}>
-        <SidebarArea.OpenedAreaButton title="Text" icon={<HeadingIcon size="lg" />} />
-      </div>
-      <div ref={(ref) => create(ref, <Text text="Hello new world" />)}>
-        <SidebarArea.OpenedAreaButton title="Text" icon={<HeadingIcon size="lg" />} />
-      </div>
+      {WidgetsFixture.map((widget, index) => (
+        <div key={`widget-${widget.title}-${index}`} ref={(ref) => create(ref, widget.component)}>
+          <SidebarArea.OpenedAreaButton title={widget.title} icon={widget.icon} />
+        </div>
+      ))}
     </SidebarArea.OpenedAreaButtonGroup>
   );
 };

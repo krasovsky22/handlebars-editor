@@ -1,27 +1,32 @@
 import { useNode } from "@craftjs/core";
 import React from "react";
-import { WithChildrenType } from "@components/common-types";
 import { Slider, FormControl, FormLabel } from "@material-ui/core";
 import ColorPicker from "material-ui-color-picker";
+import { ContainerType } from "./elements-types";
+import { WithChildrenType } from "@components/common-types";
+import convertElementPropsToStyles from "@utils/convert-element-props-to-styles";
 
-type ContainerType = WithChildrenType & {
-  background?: string;
-  padding?: string;
+export const ContainerDefaultProps: ContainerType = {
+  background: "#ffffff",
+  height: "300px",
+  flexGrow: 1,
+  width: "100%",
+  margin: ["0", "0", "0", "0"],
+  padding: ["0", "0", "0", "0"],
 };
-const Container = ({ background, padding, children }: ContainerType) => {
+
+const Container = ({ children, ...rest }: WithChildrenType & ContainerType) => {
   const {
     connectors: { connect, drag },
   } = useNode();
 
+  const styles = convertElementPropsToStyles({ ...ContainerDefaultProps, ...rest });
+
   return (
-    <div ref={(dom) => connect(drag(dom))} style={{ background, padding }}>
+    <div ref={(dom) => connect(drag(dom))} style={styles}>
       {children}
     </div>
   );
-};
-
-export const ContainerDefaultProps = {
-  background: "#ffffff",
 };
 
 export const ContainerSettings = () => {

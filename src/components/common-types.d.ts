@@ -1,7 +1,7 @@
 import React from "react";
 
 export type WithChildrenType = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export type ImageType = {
